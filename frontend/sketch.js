@@ -1,10 +1,7 @@
 var bubAr=[];
 
 function setup() {
-  // put setup code here
-  createCanvas(500, 500);
-  // Create object
-  
+  createCanvas((window.innerWidth || document.body.clientWidth) - 4, (window.innerHeight || document.body.clientHeight) - 4);
 }
 
 function draw() {
