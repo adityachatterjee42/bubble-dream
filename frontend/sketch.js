@@ -7,7 +7,7 @@ function setup() {
 
 function draw() {
   // put drawing code here
-  background(0, 0, 0);
+  background(0, 0, 0, 100);
   bubAr.forEach(function(bub) {
     bub.action();
   });
@@ -17,6 +17,7 @@ function Bubble() {
   this.x = random(width);
   this.y = random(height);
   this.diameter = random(50, 70);
+  this.color = color(random(0, 255), random(0, 255), random(0, 255), 100);
   this.randomspeed = 1;
 
   this.randomMove = function() {
@@ -25,11 +26,13 @@ function Bubble() {
   };
 
   this.display = function() {
+    noStroke();
+    fill(this.color);
     ellipse(this.x, this.y, this.diameter, this.diameter);
   };
 
   this.action = function() {
-    strokeWeight(0);
+    
     this.randomMove();
     this.display();
   }
