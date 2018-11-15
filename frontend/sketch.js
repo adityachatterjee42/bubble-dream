@@ -6,8 +6,7 @@ function setup() {
 }
 
 function draw() {
-  // put drawing code here
-  background(0, 0, 0, 100);
+  background(0, 0, 0, 20);
   bubAr.forEach(function(bub) {
     bub.action();
   });
@@ -16,18 +15,21 @@ function draw() {
 function Bubble() {
   this.x = random(width);
   this.y = random(height);
-  this.diameter = random(50, 70);
-  this.color = color(random(0, 255), random(0, 255), random(0, 255), 100);
+  this.diameter = random(80, 120);
+  this.color = color(random(0, 255), random(0, 255), random(0, 255), 50);
   this.randomspeed = 1;
 
   this.randomMove = function() {
-    this.x += random(-1, 1);
-    this.y += random(-1, 1);
+    this.x += random(-2, 2);
+    this.y += random(-2, 2);
   };
+
+
 
   this.display = function() {
     noStroke();
     fill(this.color);
+    this.diameter+=random(-1,1);
     ellipse(this.x, this.y, this.diameter, this.diameter);
   };
 
