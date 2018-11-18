@@ -1,4 +1,5 @@
 var bubAr=[];
+var popAr=[];
 function setup() {
   createCanvas((window.innerWidth || document.body.clientWidth) - 4, (window.innerHeight || document.body.clientHeight) - 4);
   smooth();
@@ -8,13 +9,21 @@ function draw() {
   bubAr.forEach(function(bub) {
     bub.action();
   });
+  popAr.forEach(function(par) {
+    par.display();
+  });
 }
 function Bubble() {
   this.x = random(width);
   this.y = random(height);
   this.height = random(80, 120);
   this.width = this.height;
-  this.color = color(random(0, 255), random(0, 255), random(0, 255), 50);
+  this.colorPalette = {
+    r: random(100,150),
+    g: random(100,150),
+    b: random(100,150)
+  };
+  this.color = color(this.colorPalette.r, this.colorPalette.g, this.colorPalette.b, 45);
   this.randomspeed = 1;
   this.wobbleBit = -7;
   this.wobbleCount = 10;
@@ -31,6 +40,9 @@ function Bubble() {
     this.wobbleBit = this.wobbleBit * -1;
     }
   }
+  this.pop = function() {
+
+  }
   this.display = function() {
     noStroke();
     fill(this.color);
@@ -42,6 +54,29 @@ function Bubble() {
     this.display();
   }
 }
-function mouseClicked() {
+function Particle(bubbleX, bubbleY, bubbleR, bubbleColorPalette) {
+  this.x = bubbleX + random(-1*bubbleR, bubbleR);
+  this.y = bubbleY + random(-1*bubbleR, bubbleR);
+  this.color = color(bubbleColorPalette.r, bubbleColorPalette.g, bubbleColorPalette.b, 15);
+  this.display = function() {
+    noStroke();
+    fill(this.color);
+    ellipse(this.x, this.y, 5, 5);
+  };
+}
+function popBubble() {
+  var index = Math.floor(Math.random()*bubAr.length);
+  for(var i=0; i<50; i++){
+    popAr.push(new Particle(bubAr[index].x, bubAr[index].y, bubAr[index].height/2, bubAr[index].colorPalette));
+    setTimeout(function(){ popAr.splice(popAr.length-1, 1) }, random(100, 300));
+  }
+  bubAr.splice(index, 1);
+}
+function mouseClicked(){
   bubAr.push(new Bubble());
+}
+function keyTyped() {
+  if (key === ' ') {
+    popBubble();
+  }
 }
