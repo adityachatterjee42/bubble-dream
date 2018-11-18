@@ -55,18 +55,18 @@ function Bubble() {
   }
 }
 function Particle(bubbleX, bubbleY, bubbleR, bubbleColorPalette) {
-  this.x = bubbleX + random(-1*bubbleR, bubbleR);
-  this.y = bubbleY + random(-1*bubbleR, bubbleR);
+  this.x = bubbleX + random(0,bubbleR*Math.cos(random(0, Math.PI*2)));
+  this.y = bubbleY + random(0,bubbleR*Math.sin(random(0, Math.PI*2)));
   this.color = color(bubbleColorPalette.r, bubbleColorPalette.g, bubbleColorPalette.b, 15);
   this.display = function() {
     noStroke();
     fill(this.color);
-    ellipse(this.x, this.y, 5, 5);
+    ellipse(this.x, this.y, random(3,7), random(3,7));
   };
 }
 function popBubble() {
   var index = Math.floor(Math.random()*bubAr.length);
-  for(var i=0; i<50; i++){
+  for(var i=0; i<100; i++){
     popAr.push(new Particle(bubAr[index].x, bubAr[index].y, bubAr[index].height/2, bubAr[index].colorPalette));
     setTimeout(function(){ popAr.splice(popAr.length-1, 1) }, random(100, 300));
   }
