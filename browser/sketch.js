@@ -4,9 +4,14 @@ var globalWind = {
   x:0,
   y:0
 };
+var socket;
 function setup() {
   createCanvas((window.innerWidth || document.body.clientWidth) - 4, (window.innerHeight || document.body.clientHeight) - 4);
   smooth();
+  socket = io('http://localhost');
+  socket.on('event', function (data) {
+    console.log(data);
+  });
 }
 function draw() {
   background(0, 0, 0, 20);
@@ -16,7 +21,14 @@ function draw() {
   popAr.forEach(function(par) {
     par.display();
   });
+  globalWindControl();
 }
+function globalWindControl(){
+  if(globalWind.x>0)globalWind.x-=0.025;
+  if(globalWind.x<0)globalWind.x+=0.025;
+  if(globalWind.y>0)globalWind.y-=0.025;
+  if(globalWind.y<0)globalWind.y+=0.025;
+};
 function Bubble() {
   this.x = random(width);
   this.y = random(height);
@@ -39,13 +51,9 @@ function Bubble() {
   this.spatialMove = function() {
     if(globalWind.x!=0){
       this.x+=globalWind.x;
-      if(globalWind.x>0)globalWind.x-=0.025;
-      if(globalWind.x<0)globalWind.x+=0.025;
     }
     if(globalWind.y!=0){
       this.y+=globalWind.y;
-      if(globalWind.y>0)globalWind.y-=0.025;
-      if(globalWind.y<0)globalWind.y+=0.025;
     }
     
   }

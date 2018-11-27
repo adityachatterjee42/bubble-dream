@@ -1,0 +1,22 @@
+{
+  "name": "bubble-dream",
+  "version": "1.0.0",
+  "description": "an interactive installation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adityachatterjee42/bubble-dream.git"
+  },
+  "author": "Aditya Chatterjee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adityachatterjee42/bubble-dream/issues"
+  },
+  "homepage": "https://github.com/adityachatterjee42/bubble-dream#readme",
+  "dependencies": {
+    "socket.io": "^2.1.1"
+  }
+}
