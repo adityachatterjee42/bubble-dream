@@ -8,7 +8,7 @@ var socket;
 function setup() {
   createCanvas((window.innerWidth || document.body.clientWidth) - 4, (window.innerHeight || document.body.clientHeight) - 4);
   smooth();
-  socket = io('http://localhost');
+  socket = io('http://localhost:3334');
   socket.on('event', function (data) {
     console.log(data);
   });
