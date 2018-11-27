@@ -10,7 +10,8 @@ function setup() {
   smooth();
   socket = io('http://localhost:3334');
   socket.on('event', function (data) {
-    console.log(data);
+    console.log(data.keyPressed);
+    incomingEvent(data.keyPressed);
   });
 }
 function draw() {
@@ -105,22 +106,24 @@ function popBubble() {
   }
   bubAr.splice(index, 1);
 }
-function mouseClicked(){
-  bubAr.push(new Bubble());
-}
-function keyTyped() {
-  if(key === ' ') {
+
+function incomingEvent(event) {
+  if(event === 'q'){
+    bubAr.push(new Bubble());
+  }
+  if(event === 'w'){
     popBubble();
   }
-  if(key === 'r'){
+  if(event === 'e'){
     globalWind.x=3; 
   }
-  if(key === 'l'){
+  if(event === 'r'){
     globalWind.x=-3;  
   }
-  if(key === 'p'){
+  if(event === 't'){
     while(bubAr.length>0){
       popBubble();
     }
   }
 }
+
