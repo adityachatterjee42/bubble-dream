@@ -1,8 +1,8 @@
 var app = require('http').createServer(handler)
 var io = require('socket.io')(app);
 var fs = require('fs');
-var keypress = require('keypress');
-
+var five = require("johnny-five");
+var board = new five.Board();
 app.listen(3334);
 
 function handler (req, res) {
@@ -25,17 +25,15 @@ io.on('connection', function (socket) {
   });
 });
 
-keypress(process.stdin);
- 
-process.stdin.on('keypress', function (ch, key) {
-  console.log('got "keypress"', key);
-  if (key && key.ctrl && key.name == 'c') {
-    process.exit(0);
-  }
-  else{
-    io.emit('event', {keyPressed: ch});
-  }
+
+  
+
+board.on("ready", function() {
+  var button = new five.Button(2);
+  button.on("press", function() {
+    console.log( "Button pressed" );
+    io.emit('event', {keyPressed: 'blow'});
+  });
+
+  
 });
- 
-process.stdin.setRawMode(true);
-process.stdin.resume();
