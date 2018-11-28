@@ -106,7 +106,6 @@ function popBubble() {
   }
   bubAr.splice(index, 1);
 }
-
 function incomingEvent(event) {
   if(event === 'q'){
     bubAr.push(new Bubble());
@@ -126,4 +125,3 @@ function incomingEvent(event) {
     }
   }
 }
-
