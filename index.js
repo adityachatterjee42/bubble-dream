@@ -30,10 +30,14 @@ io.on('connection', function (socket) {
 
 board.on("ready", function() {
   var button = new five.Button(2);
+  var mic = new five.Sensor("A0");
   button.on("press", function() {
     console.log( "Button pressed" );
     io.emit('event', {keyPressed: 'blow'});
   });
-
-  
+  mic.on("data", function() {
+    if(this.value>75){
+      io.emit('event', {keyPressed: 'blow'});
+    }
+  }); 
 });
