@@ -109,17 +109,16 @@ function popBubble() {
 function incomingEvent(event) {
   if(event === 'blow'){
     bubAr.push(new Bubble());
+    bubAr.push(new Bubble());
+    bubAr.push(new Bubble());
   }
   if(event === 'pop'){
     popBubble();
   }
-  if(event === 'pushRight'){
-    globalWind.x=3; 
+  if(event === 'push'){
+      globalWind.x=1; 
   }
-  if(event === 'pushLeft'){
-    globalWind.x=-3;  
-  }
-  if(event === 'wobble'){
+  if(event === 'w'){
     while(bubAr.length>0){
       popBubble();
     }
