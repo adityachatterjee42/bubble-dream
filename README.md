@@ -1,5 +1,5 @@
 # bubble-dream
-a (hopefully) interactive (hopefully) art (hopefully) installation
+an interactive art installation 
 
 # tech
 p5.js for the browser-based interactive art   
